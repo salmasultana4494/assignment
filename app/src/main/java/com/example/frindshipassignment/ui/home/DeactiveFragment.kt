@@ -1,11 +1,12 @@
 package com.example.frindshipassignment.ui.home
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.frindshipassignment.databinding.FragmentInactiveBinding
 import com.example.frindshipassignment.model.UserInfo
@@ -49,9 +50,10 @@ class DeactiveFragment() : Fragment() {
         initAdapter()
     }
     private fun initAdapter() {
+        val navController = findNavController()
         binding?.deactivateRecyclerView?.apply {
             layoutManager = LinearLayoutManager(context)
-            adapter = UserAdapter(requireContext(), myData ?: mutableListOf(), 1)
+            adapter = UserAdapter(requireContext(), myData ?: mutableListOf(), 0, navController)
         }
     }
 }

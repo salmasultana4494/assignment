@@ -1,6 +1,7 @@
 package com.example.frindshipassignment.model
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 data class UserInfo(
     @SerializedName("email")
@@ -13,4 +14,4 @@ data class UserInfo(
     var name: String,
     @SerializedName("status")
     var status: String
-)
+): Serializable

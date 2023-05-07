@@ -53,4 +53,24 @@ class HomeViewModel @Inject constructor(private val repository: ProjectRepositor
 
         return responseBody
     }
+    fun updateUser(userId: Int, requestBody: RequestBody): LiveData<UserInfo> {
+        val responseBody = MutableLiveData<UserInfo>()
+
+        viewModelScope.launch(Dispatchers.IO) {
+            val response = repository.updateUser(userId,requestBody)
+            val resCode = response.code()
+            withContext(Dispatchers.Main) {
+                when (resCode) {
+                     201 -> {
+                        responseBody.value = response.body()
+                    }
+                    200 -> {
+                        responseBody.value = response.body()
+                    }
+                }
+            }
+        }
+
+        return responseBody
+    }
 }

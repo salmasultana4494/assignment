@@ -1,14 +1,26 @@
 package com.example.frindshipassignment.ui.home
 
 import android.content.Context
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.example.frindshipassignment.R
 import com.example.frindshipassignment.databinding.ItemActiveBinding
 import com.example.frindshipassignment.databinding.ItemInactiveBinding
 import com.example.frindshipassignment.model.UserInfo
+import java.io.Serializable
 
-class UserAdapter(var context: Context, var dataList: MutableList<UserInfo>?, viewType: Int) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class UserAdapter(
+    var context: Context,
+    var dataList: MutableList<UserInfo>?,
+    var viewType: Int,
+    private val navController: NavController
+    ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private val viewType1 = viewType
     var onItemClick: ((model: UserInfo, position: Int) -> Unit)? = null
@@ -39,6 +51,13 @@ class UserAdapter(var context: Context, var dataList: MutableList<UserInfo>?, vi
             binding.genderTV.text = model?.gender
             binding.emailTV.text = model?.email
             binding.textView.text = model?.name?.first().toString()
+            binding.editIV.setOnClickListener {
+                val bundle = Bundle().apply {
+                    putBoolean("isCreate", false)
+                    putSerializable("dataList", model as Serializable)
+                }
+                navController.navigate(R.id.action_homeFragment_to_createAndUpdateFragment, bundle)
+            }
         }else if (holder is ViewHolder2){
             val model = dataList?.get(position)
             val binding = holder.binding
@@ -47,6 +66,13 @@ class UserAdapter(var context: Context, var dataList: MutableList<UserInfo>?, vi
             binding.genderTV.text = model?.gender
             binding.emailTV.text = model?.email
             binding.textView.text = model?.name?.first().toString()
+            binding.editIV.setOnClickListener {
+                val bundle = Bundle().apply {
+                    putBoolean("isCreate", false)
+                    putSerializable("dataList", model as Serializable)
+                }
+                navController.navigate(R.id.action_homeFragment_to_createAndUpdateFragment, bundle)
+            }
         }
 
     }

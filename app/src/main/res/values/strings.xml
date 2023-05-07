@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Friendship</string>
+    <string name="ek_img_content">ExportKit Image</string>
+    <string name="a_string">B</string>
+    <string name="abida_shekh_rashida_string">Bida Shekh Rashida </string>
+    <string name="female_string">Female</string>
+    <string name="amin_gmail_com_string">amin@gmail.com</string>
+    <string name="my_total_households_string">Active</string>
+    <string name="my_total_households_ek1_string">Deactivate</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
